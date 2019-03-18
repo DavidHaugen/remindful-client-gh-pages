@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import { Route } from 'react-router-dom'
+import Landing from './Landing'
+import SignUp from './SignUp'
+import SignIn from './LogIn'
+import ViewGoals from './ViewGoals'
+import GoalDetail from './GoalDetail'
+import AddGoal from './AddGoal'
+import config from './config'
+import Nav from './Nav'
 
 class App extends Component {
+  state = {
+    goals: [
+    ]
+  }
+
+
+  componentDidMount (){
+    const goals = () => fetch(`${config.API_ENDPOINT}/api/my-goals`)
+    .then(res => !res.ok
+      ? res.json().then(e => Promise.reject(e))
+      : res.json()
+      .then(goals => this.setState({goals}))
+      )
+      
+      goals()
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Route path ='/' component = {Nav} />
+        <Route path = '/about' component = {Landing} />
+        <Route path='/sign-up' component = {SignUp} />
+        <Route path='/log-in' component = {SignIn} />
+        <Route 
+          exact path='/my-goals' 
+          render = {() => <ViewGoals goals = {this.state.goals} /> } />
+        <Route
+          path='/my-goals/:goalId' 
+          render = {(match) => <GoalDetail goals = {this.state.goals} match = {match}/> }/>
+        <Route path='/add-goal' component = {AddGoal} />
       </div>
     );
   }
