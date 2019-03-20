@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 export default class Goal extends Component{
   style = this.props.goal.complete ? 'line-through' : 'none currentcolor solid'
-  // style = 'line-through'
 
   render(){
 

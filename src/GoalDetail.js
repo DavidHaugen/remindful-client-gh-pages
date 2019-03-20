@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 
 class GoalDetail extends Component {
-  goal = this.props.goals[this.props.match.match.params.goalId-1]
 
   render(){
-      console.log(this.goal)
+    let [goal] = this.props.goals.filter((goal) => (goal.id === Number(this.props.match.params.goalId)))
+
     return (
       <div>
-
         <h1>Your goal:</h1>
-        <h2>{this.goal.name}</h2>
+        <h2>{
+          (goal) ? 
+          goal.name : null}</h2>
         <h3>Reflections on this goal:</h3>
-        <textarea>{this.goal.reflections}</textarea>
+        <textarea>{
+          (goal) ? 
+          goal.reflections : null}</textarea>
       </div>
     )
   }

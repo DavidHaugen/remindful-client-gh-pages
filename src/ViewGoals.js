@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import './styles/ViewGoals.css'
 import Goal from './Goal'
 
 class ViewGoals extends Component {
+  state = {
+    goals: []
+  }
+
+  static getDerivedStateFromProps(props, state){
+    if(props.goals.length !== state.goals.length){
+      return {state: props.goals}
+    }
+  }
+
   createList(goals){
     return goals.map((goal, i) => <Goal key={i} goal={goal} />)
   };
 
   render(){
-    if(this.props.goals.length){
+    console.log(this.props.goals)
+    if(this.props.goals.length > 0){
 
       return(
         <div>
@@ -23,7 +34,7 @@ class ViewGoals extends Component {
         </div>
       )
 
-      }else return(
+      }else {return(
         <div>
           <h1>It looks like you haven't added any goals yet. Time to get started!</h1>
           <Link to='/add-goal' >
@@ -31,7 +42,8 @@ class ViewGoals extends Component {
           </Link>
         </div>
       )
+      }
   }
 }
 
-export default ViewGoals
+export default withRouter(ViewGoals)

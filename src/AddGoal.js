@@ -5,7 +5,8 @@ export default class AddGoal extends Component {
   submitNewGoal = (e) => {
     e.preventDefault()
     const name = e.target.name.value;
-    // remindfulApiService.postNewGoal(name)
+    remindfulApiService.postNewGoal(name)
+      .then((goal) => this.props.addGoal(goal))
     this.props.history.push('/my-goals')
   }
 
