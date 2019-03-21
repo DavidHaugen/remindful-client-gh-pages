@@ -9,30 +9,36 @@ import SignIn from './LogIn'
 import ViewGoals from './ViewGoals'
 import GoalDetail from './GoalDetail'
 import AddGoal from './AddGoal'
-import config from './config'
-import TokenService from './services/token-service'
 import Nav from './Nav'
+import GoalsContext from './context/GoalsContext';
+import remindfulApiService from './services/remindful-api-service'
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      goals: []
+  state = {
+      goals: [],
+
+      loading: true,
+
+      deleteGoal: (id) => {
+        const targetGoal = this.state.goals.filter((goal) => goal.id === id)
+        this.state.goals.splice(this.state.goals.indexOf(targetGoal[0]), 1)},
+
+      clearReflections: () => {
+        this.setState({goals: []})
+      },
+      
+      getGoals: () => {
+        remindfulApiService.getAllGoals()
+        .then(goals => {
+          this.setState({loading: false})
+          this.setState({goals})
+        })
+      }
+
     }
-  }
 
   componentDidMount (){
-    return fetch(`${config.API_ENDPOINT}/api/my-goals`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      },
-      body: JSON.stringify(TokenService.getAuthToken)
-    })
-    .then(res => !res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : res.json()
-      .then(goals => this.setState({goals}))
-      ) 
+    this.state.getGoals()
   }
 
   addGoal = (goal) => {
@@ -42,33 +48,34 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path ='/' component = {Nav} />
-        <Route path = '/about' component = {Landing} />
-        <Switch>
-          <PublicOnlyRoute
-                path={'/log-in'}
-                component={SignIn}
-          />
-          <PublicOnlyRoute
-                path={'/sign-up'}
-                component={SignUp}
-          />
-          <PrivateRoute
+        <GoalsContext.Provider value={this.state}>
+          <Route path ='/' component = {Nav} />
+          <Route exact path = '/' component = {Landing} />
+          <Switch>
+            <PublicOnlyRoute
+              path={'/log-in'}
+              component={SignIn}
+            />
+            <PublicOnlyRoute
+              path={'/sign-up'}
+              component={SignUp}
+            />
+            <PrivateRoute
               exact path={'/my-goals'} 
               component={ViewGoals}
+            />
+            <PrivateRoute 
+              path={'/my-goals/:goalId'}
+              component={GoalDetail}
               componentProps={{goals:this.state.goals}}
-          />
-          <PrivateRoute 
-            path={'/my-goals/:goalId'}
-            component={GoalDetail}
-            componentProps={{goals:this.state.goals}}
-          />
-          <PrivateRoute 
-            path={'/add-goal'} 
-            component = {AddGoal}
-            componentProps={{addGoal:this.addGoal}}
-          />
-        </Switch>
+            />
+            <PrivateRoute 
+              path={'/add-goal'} 
+              component = {AddGoal}
+              componentProps={{addGoal:this.addGoal}}
+            />
+          </Switch>
+        </GoalsContext.Provider>
       </div>
     );
   }

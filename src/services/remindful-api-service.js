@@ -12,8 +12,7 @@ const remindfulApiService = {
     .then(res => !res.ok
       ? res.json().then(e => Promise.reject(e))
       : res.json()
-      .then(goals => this.setState({goals}))
-      )
+      ) 
   },
 
   postNewGoal (name){
@@ -32,6 +31,55 @@ const remindfulApiService = {
         ? res.json().then(e => Promise.reject(e))
         : res.json()
       )
+  },
+
+  deleteGoal(goalId){
+    return fetch(`${config.API_ENDPOINT}/api/my-goals`, {
+      method: 'DELETE',
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        goalId: goalId
+      }),
+    })
+    .then(res => 
+      (!res.ok)
+      ? res.json().then(e => Promise.reject(e))
+      : null
+      )
+  },
+
+  postNewReflection(goalId, reflection){
+    return fetch(`${config.API_ENDPOINT}/api/reflections`, {
+      method: 'POST',
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        goalId, reflection
+      }),
+    })
+    .then( res => 
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+      )
+  },
+
+  getReflections(goalId){
+    return fetch(`${config.API_ENDPOINT}/api/reflections/${goalId}`, {
+      method: 'GET',
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+    })
+    .then(res => !res.ok
+      ? res.json().then(e => Promise.reject(e))
+      : res.json()
+      ) 
   }
 }
 

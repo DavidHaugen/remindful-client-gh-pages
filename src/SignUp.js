@@ -18,12 +18,12 @@ class SignUp extends Component {
       first_name: first_name.value,
       last_name: last_name.value,
     })
-      .then(user => {
+      .then(() => {
         first_name.value = ''
         last_name.value = ''
         email_address.value = ''
         password.value = ''
-        this.props.onRegistrationSuccess()
+        this.props.history.push('/my-goals')
       })
       .catch(res => {
         this.setState({ error: res.error })

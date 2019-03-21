@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
 const GoalsContext = React.createContext({
@@ -11,38 +11,38 @@ const GoalsContext = React.createContext({
 
 export default GoalsContext
 
-export class GoalsProvider extends Component {
-  state = {
-    goals: [],
-    error: null,
-  };
+// export class GoalsProvider extends Component {
+//   state = {
+//     goals: [],
+//     error: null,
+//   };
 
-  setGoals = goals => {
-    this.setState({ goals })
-  }
+//   setGoals = goals => {
+//     this.setState({ goals })
+//   }
 
-  setError = error => {
-    console.error(error)
-    this.setState({ error })
-  }
+//   setError = error => {
+//     console.error(error)
+//     this.setState({ error })
+//   }
 
-  clearError = () => {
-    this.setState({ error: null })
-  }
+//   clearError = () => {
+//     this.setState({ error: null })
+//   }
 
-  render() {
-    const value = {
-      goals: this.state.goals,
-      error: this.state.error,
-      setError: this.setError,
-      clearError: this.clearError,
-      setGoals: this.setGoals
-    }
+//   render() {
+//     const value = {
+//       goals: this.state.goals,
+//       error: this.state.error,
+//       setError: this.setError,
+//       clearError: this.clearError,
+//       setGoals: this.setGoals
+//     }
 
-    return (
-      <GoalsContext.Provider value={value}>
-        {this.props.children}
-      </GoalsContext.Provider>
-    )
-  }
-}
+//     return (
+//       <GoalsContext.Provider value={value}>
+//         {this.props.children}
+//       </GoalsContext.Provider>
+//     )
+//   }
+// }

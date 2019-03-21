@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import AuthApiService from './services/auth-api-service'
 import TokenService from './services/token-service'
+import GoalsContext from './context/GoalsContext'
 
 class LogIn extends Component {
   static defaultProps = {
     onLoginSuccess: () => {    }
   }
+  static contextType = GoalsContext
 
   state = { error: null }
 
@@ -23,8 +25,8 @@ class LogIn extends Component {
         email_address.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-        // this.props.onLoginSuccess()
         this.props.history.push('/my-goals')
+        this.context.getGoals()
       })
       .catch(res => {
         this.setState({ error: res.error })

@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
-import {Link, withRouter} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './styles/ViewGoals.css'
 import Goal from './Goal'
+import GoalsContext from './context/GoalsContext';
 
 class ViewGoals extends Component {
   state = {
     goals: []
   }
 
-  static getDerivedStateFromProps(props, state){
-    if(props.goals.length !== state.goals.length){
-      return {state: props.goals}
-    }
-  }
+  static contextType = GoalsContext
 
   createList(goals){
     return goals.map((goal, i) => <Goal key={i} goal={goal} />)
   };
 
   render(){
-    console.log(this.props.goals)
-    if(this.props.goals.length > 0){
+    if(this.context.loading){
+      return(
+        // <h1>Checking on your goals!</h1>
+        <div></div>
+      )
+    } else{
+    
+    if(this.context.goals.length > 0){
 
       return(
         <div>
           <h1>Here are your goals</h1>
           <ul>
-            {this.createList(this.props.goals)}
+            {this.createList(this.context.goals)}
           </ul>
           <Link to='/add-goal' >
             <button>Add goal</button>
@@ -45,5 +48,6 @@ class ViewGoals extends Component {
       }
   }
 }
+}
 
-export default withRouter(ViewGoals)
+export default ViewGoals
