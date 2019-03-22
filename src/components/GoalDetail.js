@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import GoalsContext from './context/GoalsContext'
-import remindfulApiService from './services/remindful-api-service';
-import './styles/GoalDetails.css'
+import GoalsContext from '../context/GoalsContext'
+import remindfulApiService from '../services/remindful-api-service';
+import '../styles/GoalDetails.css'
 
 class GoalDetail extends Component {
 

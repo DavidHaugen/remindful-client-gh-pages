@@ -118,6 +118,19 @@ const remindfulApiService = {
       ? res.json().then(e => Promise.reject(e))
       : res.json()
       ) 
+  },
+
+  deleteUser(){
+    return fetch(`${config.API_ENDPOINT}/api/users`, {
+      method: 'DELETE',
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+    .then(res => !res.ok
+      ? res.json().then(e => Promise.reject(e))
+      : null
+      ) 
   }
 }
 export default remindfulApiService

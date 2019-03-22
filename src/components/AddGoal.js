@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
-import remindfulApiService from './services/remindful-api-service'
+import remindfulApiService from '../services/remindful-api-service'
+import GoalsContext from '../context/GoalsContext'
 
 export default class AddGoal extends Component {
+
+  static contextType = GoalsContext
+
   submitNewGoal = (e) => {
     e.preventDefault()
     const name = e.target.name.value;
     remindfulApiService.postNewGoal(name)
-      .then((goal) => this.props.addGoal(goal))
+      .then((goal) => this.context.addGoal(goal))
     this.props.history.push('/my-goals')
   }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import './styles/ViewGoals.css'
+import '../styles/ViewGoals.css'
 import Goal from './Goal'
-import GoalsContext from './context/GoalsContext';
+import GoalsContext from '../context/GoalsContext';
 
 class ViewGoals extends Component {
   state = {

@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import './styles/App.css';
+import '../styles/App.css';
 import { Route, Switch } from 'react-router-dom'
-import PrivateRoute from './Utils/PrivateRoute'
-import PublicOnlyRoute from './Utils/PublicOnlyRoute'
-import Landing from './Landing'
+import PrivateRoute from '../Utils/PrivateRoute'
+import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
+import About from './About'
 import SignUp from './SignUp'
 import SignIn from './LogIn'
 import ViewGoals from './ViewGoals'
 import GoalDetail from './GoalDetail'
 import AddGoal from './AddGoal'
-import Nav from './Nav'
-import GoalsContext from './context/GoalsContext';
-import remindfulApiService from './services/remindful-api-service'
+import Header from './Header'
+import GoalsContext from '../context/GoalsContext';
+import remindfulApiService from '../services/remindful-api-service'
+import Account from './Account';
+import AccountDeleted from './Account-deleted';
 
 class App extends Component {
   state = {
       goals: [],
 
       loading: true,
+
+      deletedUser: false,
 
       deleteGoal: (id) => {
         const targetGoal = this.state.goals.filter((goal) => goal.id === id);
@@ -33,8 +37,8 @@ class App extends Component {
       getGoals: () => {
         remindfulApiService.getAllGoals()
         .then(goals => {
-          this.setState({loading: false})
           this.setState({goals})
+          this.setState({loading: false})
         })
       },
 
@@ -45,6 +49,18 @@ class App extends Component {
         const newGoals = this.state.goals;
         newGoals.splice(this.state.goals.indexOf(targetGoal), 1, updatedGoal);
         this.setState({goals: newGoals});
+      },
+
+      deleteUser: () => {
+        this.setState({deletedUser: true})
+      },
+
+      resetUser: () => {
+        this.setState({deletedUser: false})
+      },
+
+      addGoal: (goal) => {
+        this.setState({goals: [...this.state.goals, goal]})
       }
     }
 
@@ -52,16 +68,12 @@ class App extends Component {
     this.state.getGoals()
   }
 
-  addGoal = (goal) => {
-    this.setState({goals: [...this.state.goals, goal]})
-  }
-
   render() {
     return (
       <div className="App">
         <GoalsContext.Provider value={this.state}>
-          <Route path ='/' component = {Nav} />
-          <Route exact path = '/' component = {Landing} />
+          <Route path ='/' component = {Header} />
+          <Route exact path = '/about' component = {About} />
           <Switch>
             <PublicOnlyRoute
               path={'/log-in'}
@@ -78,14 +90,17 @@ class App extends Component {
             <PrivateRoute 
               path={'/my-goals/:goalId'}
               component={GoalDetail}
-              componentProps={{goals:this.state.goals}}
             />
             <PrivateRoute 
               path={'/add-goal'} 
               component = {AddGoal}
-              componentProps={{addGoal:this.addGoal}}
+            />
+            <PrivateRoute
+              exact path={'/account'} 
+              component={Account}
             />
           </Switch>
+          <Route path ='/account-deleted' component={AccountDeleted} />
         </GoalsContext.Provider>
       </div>
     );
