@@ -9,13 +9,13 @@ export default class Nav extends Component {
 
   handleSignOutClick = () => {
     TokenService.clearAuthToken()
-    this.context.clearReflections()
+    this.context.clearGoals()
   }
 
   render() {if(TokenService.hasAuthToken()){
     return(
     <nav role="navigation">
-      <Link className='nav-link' to='/my-goals'> View goals</Link> 
+      <Link className='nav-link' to='/my-goals' onClick={() => this.context.getGoals()}> View goals</Link> 
       {/* <Link className='nav-link' to='/log-in' > Log in</Link> 
       <Link className='nav-link' to='/sign-up'> Sign up</Link>  */}
       <Link className='nav-link' to='/' > About</Link>

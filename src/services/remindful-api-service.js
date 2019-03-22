@@ -69,6 +69,24 @@ const remindfulApiService = {
       )
   },
 
+  deleteReflection(id){
+    return fetch(`${config.API_ENDPOINT}/api/reflections`, {
+      method: 'DELETE',
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        id
+      }),
+    })
+    .then( res => 
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : null
+      ) 
+  },
+
   getReflections(goalId){
     return fetch(`${config.API_ENDPOINT}/api/reflections/${goalId}`, {
       method: 'GET',
@@ -80,7 +98,26 @@ const remindfulApiService = {
       ? res.json().then(e => Promise.reject(e))
       : res.json()
       ) 
+  },
+
+  markGoalComplete(goal){
+    return fetch(`${config.API_ENDPOINT}/api/my-goals`, {
+      method: 'PATCH',
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: goal.name,
+        reflections: goal.reflections,
+        complete: goal.complete,
+        id: goal.id
+      }),
+    })
+    .then(res => !res.ok
+      ? res.json().then(e => Promise.reject(e))
+      : res.json()
+      ) 
   }
 }
-
 export default remindfulApiService

@@ -20,10 +20,13 @@ class App extends Component {
       loading: true,
 
       deleteGoal: (id) => {
-        const targetGoal = this.state.goals.filter((goal) => goal.id === id)
-        this.state.goals.splice(this.state.goals.indexOf(targetGoal[0]), 1)},
+        const targetGoal = this.state.goals.filter((goal) => goal.id === id);
+        const newGoals = this.state.goals;
+        newGoals.splice(this.state.goals.indexOf(targetGoal[0]), 1);
+        this.setState({goals: newGoals})
+      },
 
-      clearReflections: () => {
+      clearGoals: () => {
         this.setState({goals: []})
       },
       
@@ -33,8 +36,16 @@ class App extends Component {
           this.setState({loading: false})
           this.setState({goals})
         })
-      }
+      },
 
+      markGoalComplete: (id) => {
+        const targetGoal = this.state.goals.filter((goal) => goal.id === Number(id))[0];
+        const updatedGoal = {...targetGoal};
+        updatedGoal.complete = !updatedGoal.complete;
+        const newGoals = this.state.goals;
+        newGoals.splice(this.state.goals.indexOf(targetGoal), 1, updatedGoal);
+        this.setState({goals: newGoals});
+      }
     }
 
   componentDidMount (){
