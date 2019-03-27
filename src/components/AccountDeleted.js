@@ -19,10 +19,13 @@ class AccountDeleted extends Component {
     .then(TokenService.clearAuthToken())
       .then(this.setState({deleted: true}))
   }
+  
   render(){
     return (
-      <div>
-        <h4>{'Your account has been successfully deleted'}</h4>
+      <div className="main">
+        <div className="wrapper">
+          <h4>{'Your account has been successfully deleted'}</h4>\
+        </div>
       </div>
     )
   }

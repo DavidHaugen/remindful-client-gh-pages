@@ -1,4 +1,3 @@
 export default {
-  API_ENDPOINT: 'http://localhost:8000',
-  TOKEN_KEY: 'TOKEN_KEY'
+  API_ENDPOINT: 'https://quiet-mountain-96034.herokuapp.com'
 }

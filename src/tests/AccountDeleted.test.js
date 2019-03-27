@@ -1,16 +1,16 @@
 import React from 'react';
-import App from '../components/App';
 import {MemoryRouter} from 'react-router-dom'
+import AccountDeleted from '../components/AccountDeleted'
 import {mount} from 'enzyme';
 import renderer from 'react-test-renderer'
 
-describe('<App />', () => {
+describe('<AccountDeleted />', () => {
   it('Renders without crashing', () => {
-      mount(<MemoryRouter><App /></MemoryRouter>);
+      mount(<MemoryRouter><AccountDeleted/></MemoryRouter>);
   });
   it('renders the UI as expected', () => {
     const tree = renderer
-      .create(<MemoryRouter><App/></MemoryRouter>)
+      .create(<MemoryRouter><AccountDeleted/></MemoryRouter>)
       .toJSON();
     expect(tree).toMatchSnapshot();  
     });

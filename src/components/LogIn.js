@@ -37,26 +37,28 @@ class LogIn extends Component {
     const { error } = this.state
 
     return(
-      <div>
-        <h2>Welcome back!</h2>
-        <h3>Please log in below:</h3>
-        <form onSubmit={this.handleSubmitJwtAuth}>
-          <div role='alert'>
-            {error && <p className='red'>{error}</p>}
-          </div>
-          <div>
-            <label>Email address
-              <input name='email_address' type='email' id='signUp_email_address' required/>
-            </label>
-          </div>
-          <div>
-            <label>Password
-              <input name='password' type='password' id='password' required/>
-            </label>
-          </div>
-          <button type='submit'>Login</button>
-        </form>
-    <p>Not signed up yet? {<Link className='nav-link' to='/sign-up'> Sign up instead!</Link>}</p>
+      <div className="main">
+        <div className="wrapper">
+          <h1 className="karla">Welcome back!</h1>
+          <p className="instructions">Please log in below:</p>
+        <div className="formContainer">
+          <form onSubmit={this.handleSubmitJwtAuth} className="inputForm">
+            <div role='alert'>
+              {error && <p className='red'>{error}</p>}
+            </div>
+            <div className='formField'>
+              <label htmlFor="login_email_address" className="inputLabel">Email address</label>
+                <input name='email_address' type='email' id='login_email_address' className="inputField" required/>
+            </div>
+            <div className='formField'>
+              <label htmlFor="password" className="inputLabel">Password</label>
+                <input name='password' type='password' id='password' className="inputField" required/>
+            </div>
+            <button type='submit' className="textButton login">Log in</button>
+          </form>
+        </div>
+        <p>Not signed up yet? {<Link className='signUpLink' to='/sign-up'>Sign up instead!</Link>}</p>
+        </div>
       </div>
     )
   }

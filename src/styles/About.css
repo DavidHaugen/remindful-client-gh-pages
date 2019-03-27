@@ -1,0 +1,17 @@
+.aboutHeader{
+  font-family: 'Karla', sans-serif;
+  color: #0A0908;
+  font-size: 40px;
+}
+
+.description, .details, .tryRemindful{
+  font-family: 'Rubik', sans-serif;
+  line-height: 2;
+  color: #0A0908;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.tryRemindful{
+  border-top: 1px solid #0A0908
+}

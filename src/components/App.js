@@ -13,18 +13,20 @@ import Header from './Header'
 import GoalsContext from '../context/GoalsContext';
 import remindfulApiService from '../services/remindful-api-service'
 import Account from './Account';
-import AccountDeleted from './Account-deleted';
+import AccountDeleted from './AccountDeleted';
+import TokenService from '../services/token-service'
+
 
 class App extends Component {
   state = {
       goals: [],
 
-      loading: true,
+      loading: false,
 
       deletedUser: false,
 
       deleteGoal: (id) => {
-        const targetGoal = this.state.goals.filter((goal) => goal.id === id);
+        const targetGoal = this.state.goals.filter((goal) => goal.id === Number(id));
         const newGoals = this.state.goals;
         newGoals.splice(this.state.goals.indexOf(targetGoal[0]), 1);
         this.setState({goals: newGoals})
@@ -35,10 +37,11 @@ class App extends Component {
       },
       
       getGoals: () => {
+        this.state.loadingTrue()
         remindfulApiService.getAllGoals()
         .then(goals => {
           this.setState({goals})
-          this.setState({loading: false})
+          this.state.loadingFalse()
         })
       },
 
@@ -61,11 +64,21 @@ class App extends Component {
 
       addGoal: (goal) => {
         this.setState({goals: [...this.state.goals, goal]})
+      },
+
+      loadingTrue: () => {
+        this.setState({loading: true})
+      },
+
+      loadingFalse: () => {
+        this.setState({loading: false})
       }
     }
 
   componentDidMount (){
-    this.state.getGoals()
+    if(TokenService.hasAuthToken()){
+      this.state.getGoals()
+    }
   }
 
   render() {
@@ -73,7 +86,7 @@ class App extends Component {
       <div className="App">
         <GoalsContext.Provider value={this.state}>
           <Route path ='/' component = {Header} />
-          <Route exact path = '/about' component = {About} />
+          <Route exact path = '/' component = {About} />
           <Switch>
             <PublicOnlyRoute
               path={'/log-in'}

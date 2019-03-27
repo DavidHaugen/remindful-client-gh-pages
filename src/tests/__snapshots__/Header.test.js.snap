@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders the UI as expected 1`] = `
+<nav
+  role="navigation"
+>
+  <a
+    className="nav-link"
+    href="/log-in"
+    onClick={[Function]}
+  >
+     Log in
+  </a>
+  <a
+    className="nav-link"
+    href="/sign-up"
+    onClick={[Function]}
+  >
+     Sign up
+  </a>
+  <a
+    className="nav-link"
+    href="/"
+    onClick={[Function]}
+  >
+     About
+  </a>
+</nav>
+`;

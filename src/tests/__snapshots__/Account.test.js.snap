@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Account /> renders the UI as expected 1`] = `
+<div
+  className="main"
+>
+  <button
+    className="textButton"
+    onClick={[Function]}
+  >
+    Delete my account
+  </button>
+</div>
+`;

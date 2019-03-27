@@ -16,16 +16,15 @@ export default class Header extends Component {
     return(
     <nav role="navigation">
       <Link className='nav-link' to='/my-goals' onClick={() => this.context.getGoals()}> View goals</Link> 
-      <Link className='nav-link' to='/about' >About</Link>
-      <Link className='nav-link' to='/log-in' onClick={this.handleSignOutClick}>Sign out</Link>
+      <Link className='nav-link' to='/' >About</Link>
       <Link className='nav-link' to='/account' >Account</Link>
+      <Link className='nav-link' to='/log-in' onClick={this.handleSignOutClick}>Sign out</Link>
     </nav>
     )}else return (
       <nav role="navigation">
-        <Link className='nav-link' to='/my-goals'> View goals</Link> 
         <Link className='nav-link' to='/log-in' > Log in</Link> 
         <Link className='nav-link' to='/sign-up'> Sign up</Link> 
-        <Link className='nav-link' to='/about' > About</Link>
+        <Link className='nav-link' to='/' > About</Link>
       </nav>
     )
   }

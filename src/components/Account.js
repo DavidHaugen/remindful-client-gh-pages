@@ -18,8 +18,8 @@ class Account extends Component {
   }
   render(){
     return (
-      <div>
-        <button onClick={() => this.deleteAccount()}>Delete my account</button>
+      <div className="main">
+        <button className="textButton" onClick={() => this.deleteAccount()}>Delete my account</button>
       </div>
     )
   }

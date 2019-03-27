@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders the UI as expected 1`] = `
+<div
+  className="App"
+>
+  <nav
+    role="navigation"
+  >
+    <a
+      className="nav-link"
+      href="/log-in"
+      onClick={[Function]}
+    >
+       Log in
+    </a>
+    <a
+      className="nav-link"
+      href="/sign-up"
+      onClick={[Function]}
+    >
+       Sign up
+    </a>
+    <a
+      className="nav-link"
+      href="/"
+      onClick={[Function]}
+    >
+       About
+    </a>
+  </nav>
+  <div
+    className="main"
+  >
+    <div
+      className="wrapper"
+    >
+      <header
+        className="banner"
+        role="banner"
+      >
+        <h1
+          className="aboutHeader"
+        >
+          Remindful
+        </h1>
+      </header>
+      <section
+        className="description"
+      >
+        <p>
+          Remindful is meant to give you a space to track your long-term goals. It's here to provide you with a gentle nudge to stay on course to write that novel, learn a new instrument, or pick up the phone to call that old friend every now and then. On the first of every month you'll receive an email reminding you to check in with your goals and log your progress. 
+        </p>
+      </section>
+      <section
+        className="details"
+      >
+        <p>
+          It's easy to neglect long-term goals when you have so many things that need doing today. Sure, nothing bad would happen if you didn't dig that violin out of the closet, but wouldn't it feel good to finally nail the first few lines of that song you've always wanted to learn? 
+        </p>
+      </section>
+      <section
+        className="tryRemindful"
+      >
+        <p>
+          Want to try Remindful before you sign up? Click the button below to get started. Please note: this will log you in under a public test account. All changes made to the account will be visible to anyone using the test account and will be reset daily.
+        </p>
+        <button
+          className="textButton"
+          onClick={[Function]}
+        >
+          Try Remindful!
+        </button>
+      </section>
+    </div>
+  </div>
+</div>
+`;

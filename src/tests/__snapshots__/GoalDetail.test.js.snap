@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GoalDetail /> renders the UI as expected 1`] = `
+<div
+  className="main"
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="goalTitle"
+    >
+      <h1
+        className="inProgress"
+      >
+        test
+      </h1>
+      <div
+        className="goalButtons"
+      >
+        <div
+          className="trashContainer"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-trash"
+          />
+        </div>
+        <div
+          className="checkContainer"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-check-circle"
+          />
+        </div>
+      </div>
+    </div>
+    <ul
+      className="listContainer"
+    >
+      <div
+        className="empty"
+      >
+        <p>
+          No reflections yet.
+        </p>
+        Get started by adding a reflection below!
+      </div>
+    </ul>
+    <form
+      className="reflectionForm"
+      id="reflectionsForm"
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="reflectionsInput"
+        id="addReflectionLabel"
+      >
+        Add reflection:
+      </label>
+      <div
+        className="formContainer"
+      >
+        <input
+          id="reflectionsInput"
+          name="reflectionsInput"
+          required={true}
+        />
+        <button
+          type="submit"
+        >
+          <i
+            className="fas fa-plus-circle"
+            id="reflectionButton"
+            type="button"
+          />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

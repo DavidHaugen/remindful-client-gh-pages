@@ -14,9 +14,9 @@ class GoalDetail extends Component {
 
   submitReflection = e => {
     e.preventDefault();
-    const {reflections} = e.target
+    const {reflectionsInput} = e.target
     const goalId = this.props.match.params.goalId
-    remindfulApiService.postNewReflection(goalId, reflections.value)
+    remindfulApiService.postNewReflection(goalId, reflectionsInput.value)
     .then(reflection => this.setState({reflections: [...this.state.reflections, reflection]}))
     .then(document.getElementById('reflectionsForm').reset())
   }
@@ -47,43 +47,63 @@ class GoalDetail extends Component {
   }
 
   componentDidMount (){
+    this.context.loadingTrue();
     remindfulApiService.getReflections(Number(this.props.match.params.goalId))
       .then(reflections => this.setState({reflections}))
+      .then(this.context.loadingFalse());
   }
   
 
   render(){
     const reflections = this.state.reflections.map((reflection, key) =>{ 
       const date = new Date(reflection.date_created)
-      return <li key={key}>
-          <span className='reflectionDate'>Date: {(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()}</span><span className='reflectionContent'>{reflection.content}</span><button id={reflection.id} onClick={(e) => this.deleteReflection(e)}>delete</button>
+      return <li key={key} className="reflection">
+          <span className='reflectionDate'>{(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()}</span><span className='reflectionContent'>{reflection.content}</span>
+          <i className="fas fa-trash" onClick={(e) => this.deleteReflection(e)}></i>
         </li>
-    }
-    )
+    })
     let [goal] = this.context.goals.filter((goal) => (goal.id === Number(this.props.match.params.goalId)))
-    return (
-      <div>
-        <h1>Your goal:</h1>
-        <h2 className={
-          (goal) ? 
-          goal.complete ? 'complete' : 'inProgress' :
-        null}>{
-          (goal) ? 
-          goal.name : null}</h2>
-        <h3>Reflections on this goal:</h3>
-        <ul>
-          {reflections}
-        </ul>
-          <form id='reflectionsForm' onSubmit={(e)=>this.submitReflection(e)}>
-            <input id='reflections' name='reflections' >
-                </input>
-            <button type='submit' >Submit reflection</button>
-          </form>
-        <button onClick={() => this.deleteGoal(this.props.match.params.goalId)}>Delete goal</button>
-        <button onClick={() => this.markGoalComplete(this.props.match.params.goalId)}>Mark complete</button>
 
+    if(this.context.loading){
+      return (
+        <div className="main">
+        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       </div>
-    )
+      )
+    } else {
+    return (
+      <div className="main">
+        <div className="wrapper">
+          <div className="goalTitle">
+            <h1 className={
+              (goal) ? 
+              goal.complete ? 'complete' : 'inProgress' :
+              null}>{
+              (goal) ? 
+              goal.name : null}</h1>
+              <div className="goalButtons">
+                <div className="trashContainer" onClick={() => this.deleteGoal(this.props.match.params.goalId)}>
+                  <i className="fas fa-trash"></i>
+                </div>
+                <div className="checkContainer" onClick={() => this.markGoalComplete(this.props.match.params.goalId)}>
+                  <i className="fas fa-check-circle" ></i>
+                </div>
+              </div>
+          </div>
+            <ul className="listContainer">
+              {reflections.length > 0 ? reflections : <div className="empty"><p>No reflections yet.</p>Get started by adding a reflection below!</div>}
+            </ul>
+            <form id='reflectionsForm' onSubmit={(e)=>this.submitReflection(e)} className="reflectionForm">
+              <label htmlFor="reflectionsInput" id="addReflectionLabel">Add reflection:</label>
+              <div className="formContainer">
+                <input id='reflectionsInput' name='reflectionsInput' required></input>
+                <button type='submit' ><i className="fas fa-plus-circle" id="reflectionButton" type="button"></i></button>
+              </div>
+            </form>
+        
+          </div>
+      </div>
+    )}
   }
 }
 

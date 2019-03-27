@@ -16,13 +16,17 @@ export default class AddGoal extends Component {
 
   render(){
     return (
-      <div>
-        <form onSubmit={(e) => this.submitNewGoal(e)}>
-          <label>Name your goal:
-            <input type='text' id = 'name' ></input>
-          </label>
-          <button type='submit'>Submit</button>
+      <div className="main">
+        <div className="wrapper">
+          <h1>New goal!</h1>
+          <form className="addGoal" onSubmit={(e) => this.submitNewGoal(e)} >
+            <label htmlFor="name" className="addGoalLabel">Name your goal:</label>
+            <div className="formContainer">
+              <input type='text' id = 'name' required className="addGoalInput" ></input>
+            <button type='submit'><i className="fas fa-plus-circle addGoalButton"></i></button>
+            </div>
         </form>
+        </div>
       </div>
     )
   }

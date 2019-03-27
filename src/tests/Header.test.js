@@ -1,17 +1,17 @@
 import React from 'react';
-import App from '../components/App';
 import {MemoryRouter} from 'react-router-dom'
+import Header from '../components/Header'
 import {mount} from 'enzyme';
 import renderer from 'react-test-renderer'
 
-describe('<App />', () => {
+describe('<Header />', () => {
   it('Renders without crashing', () => {
-      mount(<MemoryRouter><App /></MemoryRouter>);
+      mount(<MemoryRouter><Header/></MemoryRouter>);
   });
   it('renders the UI as expected', () => {
     const tree = renderer
-      .create(<MemoryRouter><App/></MemoryRouter>)
+      .create(<MemoryRouter><Header/></MemoryRouter>)
       .toJSON();
     expect(tree).toMatchSnapshot();  
-    });
+  });
 });
