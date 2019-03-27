@@ -37,18 +37,6 @@ button{
   font-size: 20px;
 }
 
-#reflectionsInput{
-  border: 1px solid #0A0908;
-  border-radius: 2px;
-  font-size: 16px;
-  padding: 2px 2px 2px 4px;
-  margin-left: 4px;
-}
-
-#addReflectionLabel{
-  margin-right: 100px;
-}
-
 #reflectionButton{
   cursor: pointer;
   font-size: 28px;

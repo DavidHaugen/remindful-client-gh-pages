@@ -8,7 +8,7 @@ exports[`<AddGoal /> renders the UI as expected 1`] = `
     className="wrapper"
   >
     <h1>
-      New goal!
+      Let's create your new goal
     </h1>
     <div
       className="formContainer"
@@ -20,25 +20,29 @@ exports[`<AddGoal /> renders the UI as expected 1`] = `
         <div
           role="alert"
         />
-        <label
-          className="inputLabel"
-          htmlFor="name"
+        <div
+          className="formField"
         >
-          Name your goal:
-        </label>
-        <input
-          className="inputField"
-          id="name"
-          required={true}
-          type="text"
-        />
-        <button
-          type="submit"
-        >
-          <i
-            className="fas fa-plus-circle addGoalButton"
+          <label
+            className="inputLabel"
+            htmlFor="name"
+          >
+            Name
+          </label>
+          <input
+            className="inputField"
+            id="name"
+            required={true}
+            type="text"
           />
-        </button>
+          <button
+            type="submit"
+          >
+            <i
+              className="fas fa-plus-circle addGoalButton"
+            />
+          </button>
+        </div>
       </form>
     </div>
   </div>

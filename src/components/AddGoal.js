@@ -17,18 +17,21 @@ export default class AddGoal extends Component {
   render(){
     // const { error } = this.state
     let error;
+
     return (
       <div className="main">
         <div className="wrapper">
-          <h1>New goal!</h1>
+          <h1>Let's create your new goal</h1>
           <div className="formContainer">
             <form className="inputForm" onSubmit={(e) => this.submitNewGoal(e)} >
               <div role='alert'>
                 {error && <p className='red'>{error}</p>}
               </div>
-              <label htmlFor="name" className="inputLabel">Name your goal:</label>
-                <input type='text' id = 'name' required className="inputField" ></input>
-              <button type='submit'><i className="fas fa-plus-circle addGoalButton"></i></button>
+              <div className="formField">
+                <label htmlFor="name" className="inputLabel">Name</label>
+                  <input type='text' id = 'name' required className="inputField" ></input>
+                <button type='submit'><i className="fas fa-plus-circle addGoalButton"></i></button>
+              </div>
             </form>
           </div>
         </div>

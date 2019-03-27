@@ -55,6 +55,8 @@ class GoalDetail extends Component {
   
 
   render(){
+    let error;
+
     const reflections = this.state.reflections.map((reflection, key) =>{ 
       const date = new Date(reflection.date_created)
       return <li key={key} className="reflection">
@@ -90,17 +92,21 @@ class GoalDetail extends Component {
                 </div>
               </div>
           </div>
-            <ul className="listContainer">
-              {reflections.length > 0 ? reflections : <div className="empty"><p>No reflections yet.</p>Get started by adding a reflection below!</div>}
-            </ul>
-            <form id='reflectionsForm' onSubmit={(e)=>this.submitReflection(e)} className="reflectionForm">
-              <label htmlFor="reflectionsInput" id="addReflectionLabel">Add reflection:</label>
-              <div className="formContainer">
-                <input id='reflectionsInput' name='reflectionsInput' required></input>
-                <button type='submit' ><i className="fas fa-plus-circle" id="reflectionButton" type="button"></i></button>
-              </div>
-            </form>
-        
+          <ul className="listContainer">
+            {reflections.length > 0 ? reflections : <div className="empty"><p>No reflections yet.</p>Get started by adding a reflection below!</div>}
+          </ul>
+            <div className="formContainer">
+              <form onSubmit={(e)=>this.submitReflection(e)} className="inputForm">
+                <div role='alert'>
+                  {error && <p className='red'>{error}</p>}
+                </div>
+                <div className="formField">
+                  <label htmlFor="reflectionsInput" id="addReflectionLabel" className="inputLabel">Reflection</label>
+                  <input id='reflectionsInput' name='reflectionsInput' className="inputField" required></input>
+                  <button type='submit' ><i className="fas fa-plus-circle" id="reflectionButton" type="button"></i></button>
+                </div>
+              </form>
+            </div>
           </div>
       </div>
     )}

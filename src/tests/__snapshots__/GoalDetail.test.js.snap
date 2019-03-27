@@ -48,36 +48,44 @@ exports[`<GoalDetail /> renders the UI as expected 1`] = `
         Get started by adding a reflection below!
       </div>
     </ul>
-    <form
-      className="reflectionForm"
-      id="reflectionsForm"
-      onSubmit={[Function]}
+    <div
+      className="formContainer"
     >
-      <label
-        htmlFor="reflectionsInput"
-        id="addReflectionLabel"
+      <form
+        className="inputForm"
+        onSubmit={[Function]}
       >
-        Add reflection:
-      </label>
-      <div
-        className="formContainer"
-      >
-        <input
-          id="reflectionsInput"
-          name="reflectionsInput"
-          required={true}
+        <div
+          role="alert"
         />
-        <button
-          type="submit"
+        <div
+          className="formField"
         >
-          <i
-            className="fas fa-plus-circle"
-            id="reflectionButton"
-            type="button"
+          <label
+            className="inputLabel"
+            htmlFor="reflectionsInput"
+            id="addReflectionLabel"
+          >
+            Reflection
+          </label>
+          <input
+            className="inputField"
+            id="reflectionsInput"
+            name="reflectionsInput"
+            required={true}
           />
-        </button>
-      </div>
-    </form>
+          <button
+            type="submit"
+          >
+            <i
+              className="fas fa-plus-circle"
+              id="reflectionButton"
+              type="button"
+            />
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 `;
