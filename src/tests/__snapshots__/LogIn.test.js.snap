@@ -34,7 +34,7 @@ exports[`<LogIn /> renders the UI as expected 1`] = `
             className="inputLabel"
             htmlFor="login_email_address"
           >
-            Email address
+            Email
           </label>
           <input
             className="inputField"

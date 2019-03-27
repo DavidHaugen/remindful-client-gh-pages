@@ -55,7 +55,7 @@ class SignUp extends Component {
                   <input name='last_name' type='text' id='signUp_last_name' className="inputField" required/>
               </div>
               <div className='formField'>
-                <label className="inputLabel" htmlFor="signUp_email_address">Email address</label>
+                <label className="inputLabel" htmlFor="signUp_email_address">Email</label>
                   <input name='email_address' type='email' id='signUp_email_address' className="inputField" required/>
               </div>
               <div className='formField'>

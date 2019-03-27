@@ -3,15 +3,13 @@ div.main{
   min-height: 30vh;
   margin-top: 20px;
   padding-top: 20px;
-  /* display: flex; */
 }
 
 div.main .wrapper {
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
-  /* background-color: #fafafa; */
-
+  margin-bottom: 50px;
 }
 
 .inputForm{

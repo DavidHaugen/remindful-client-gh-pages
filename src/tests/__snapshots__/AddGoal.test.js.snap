@@ -10,21 +10,24 @@ exports[`<AddGoal /> renders the UI as expected 1`] = `
     <h1>
       New goal!
     </h1>
-    <form
-      className="addGoal"
-      onSubmit={[Function]}
+    <div
+      className="formContainer"
     >
-      <label
-        className="addGoalLabel"
-        htmlFor="name"
+      <form
+        className="inputForm"
+        onSubmit={[Function]}
       >
-        Name your goal:
-      </label>
-      <div
-        className="formContainer"
-      >
+        <div
+          role="alert"
+        />
+        <label
+          className="inputLabel"
+          htmlFor="name"
+        >
+          Name your goal:
+        </label>
         <input
-          className="addGoalInput"
+          className="inputField"
           id="name"
           required={true}
           type="text"
@@ -36,8 +39,8 @@ exports[`<AddGoal /> renders the UI as expected 1`] = `
             className="fas fa-plus-circle addGoalButton"
           />
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
 `;

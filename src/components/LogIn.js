@@ -47,7 +47,7 @@ class LogIn extends Component {
               {error && <p className='red'>{error}</p>}
             </div>
             <div className='formField'>
-              <label htmlFor="login_email_address" className="inputLabel">Email address</label>
+              <label htmlFor="login_email_address" className="inputLabel">Email</label>
                 <input name='email_address' type='email' id='login_email_address' className="inputField" required/>
             </div>
             <div className='formField'>

@@ -73,7 +73,7 @@ exports[`<SignUp /> renders the UI as expected 1`] = `
             className="inputLabel"
             htmlFor="signUp_email_address"
           >
-            Email address
+            Email
           </label>
           <input
             className="inputField"
