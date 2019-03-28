@@ -16,16 +16,6 @@ describe('<GoalDetail />', () => {
       }/></GoalsContext.Provider></MemoryRouter>);
   });
 
-  // it("renders without crashing", () => {
-  //   const div = document.createElement("div");
-  //   ReactDOM.render(
-  //     <MemoryRouter>
-  //       <GoalDetail />
-  //     </MemoryRouter>,
-  //     div
-  //   ); 
-  // })
-
   it('renders the UI as expected', () => {
     const state ={ goals: [{complete: false, id: 1, name: 'test'}, {complete: false, id: 2, name: 'test2'}],
     loadingTrue: () => {},

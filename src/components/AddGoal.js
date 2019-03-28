@@ -17,8 +17,7 @@ export default class AddGoal extends Component {
   }
 
   render(){
-    // const { error } = this.state
-    let error;
+    let error = this.context.error;
 
     return (
       <div className="main">

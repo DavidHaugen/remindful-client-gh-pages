@@ -14,7 +14,7 @@ class Account extends Component {
     this.context.clearError();
     remindfulApiService.deleteUser()
     .catch(res => {
-      this.context.setError(res.error)
+      this.context.setError(res)
     })
     .then(TokenService.clearAuthToken())
       .then(this.context.deleteUser())

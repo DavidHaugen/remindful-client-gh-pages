@@ -83,9 +83,9 @@ class GoalDetail extends Component {
     return (
       <div className="main">
         <div className="wrapper">
-            <div role='alert'>
-              {this.context.error && <p className='red'>{this.context.error}</p>}
-            </div>
+          <div role='alert'>
+            {this.context.error && <p className='red'>{this.context.error}</p>}
+          </div>
           <div className="goalTitle">
             <h1 className={
               (goal) ? 

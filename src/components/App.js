@@ -85,7 +85,7 @@ class App extends Component {
       },
 
       setError: (err) => {
-        this.setState({error: err.message})
+        this.setState({error: err.error})
       }
     }
 
