@@ -182,3 +182,7 @@ div.main .wrapper {
     opacity: 0.5;
   }
 }
+
+.alert{
+  color: rgb(147, 63, 63)
+}
