@@ -2,18 +2,23 @@ import React, { Component } from 'react'
 import AuthApiService from '../services/auth-api-service'
 import { Link } from 'react-router-dom'
 import '../styles/SignUp.css'
+import GoalsContext from '../context/GoalsContext'
 
 class SignUp extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {}
   }
 
-  state = { error: null }
+  static contextType = GoalsContext
+
+  state = { 
+    error: null }
 
   handleSubmit = ev => {
     ev.preventDefault()
     const { first_name, last_name, email_address, password } = ev.target
     this.setState({ error: null })
+    this.context.loadingTrue()
     AuthApiService.postUser({
       email_address: email_address.value,
       password: password.value,
@@ -26,14 +31,24 @@ class SignUp extends Component {
         email_address.value = ''
         password.value = ''
         this.props.history.push('/my-goals')
+        this.context.loadingFalse()
       })
       .catch(res => {
         this.setState({ error: res.error })
+        this.context.loadingFalse()
       })
   }
 
   render(){
     const { error } = this.state
+
+    if(this.context.loading){
+    return(
+      <div className="main">
+        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+    )
+    } else{
 
     return(
       <div className="main"> 
@@ -66,11 +81,12 @@ class SignUp extends Component {
             </form>
           </div>
           <section className="instructions">
-            <p>Want to try Remindful before signing up? See our {<Link className='aboutLink' to='/'>About</Link>} page!</p>
+            <p>Want to try Remindful before signing up? See our {<Link className='aboutLink' to='/about'>About page!</Link>}</p>
           </section>
         </div>
       </div>    
     )
+  }
   }
 }
 

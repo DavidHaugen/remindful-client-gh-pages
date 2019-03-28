@@ -115,12 +115,11 @@ exports[`<SignUp /> renders the UI as expected 1`] = `
         Want to try Remindful before signing up? See our 
         <a
           className="aboutLink"
-          href="/"
+          href="/about"
           onClick={[Function]}
         >
-          About
+          About page!
         </a>
-         page!
       </p>
     </section>
   </div>

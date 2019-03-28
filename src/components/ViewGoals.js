@@ -7,9 +7,6 @@ import '../styles/main.css'
 
 
 class ViewGoals extends Component {
-  state = {
-    goals: []
-  }
 
   static contextType = GoalsContext
 
@@ -20,7 +17,6 @@ class ViewGoals extends Component {
   render(){
     if(this.context.loading){
       return(
-        // <h1>Checking on your goals!</h1>
         <div className="main">
           <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
@@ -32,14 +28,17 @@ class ViewGoals extends Component {
       return(
         <div className="main">
           <div className="wrapper">
-            <ul className="listContainer">
-            <div className="listHeader">
-              <h1 className="listTitle">Your goals</h1>
-              <Link to='/add-goal' className="addLink">
-                <button className="button"><i className="fas fa-plus-circle"></i></button>
-              </Link>
+            <div role='alert'>
+              {this.context.error && <p className='red'>{this.context.error}</p>}
             </div>
-            {this.createList(this.context.goals)}
+            <ul className="listContainer">
+              <div className="listHeader">
+                <h1 className="listTitle">Your goals</h1>
+                <Link to='/add-goal' className="addLink">
+                  <button className="button"><i className="fas fa-plus-circle"></i></button>
+                </Link>
+              </div>
+              {this.createList(this.context.goals)}
             </ul>
           </div>
         </div>
@@ -50,7 +49,6 @@ class ViewGoals extends Component {
           <div className="wrapper">
             <h1>It looks like you haven't added any goals yet. Click the button below to add your first goal.</h1>
             <Link to='/add-goal'>
-            {/* <span style={{color: '#0A0908'}}>Add Goal </span> */}
               <button className="button"><i className="fas fa-plus-circle bigButton"></i></button>
             </Link>
           </div>

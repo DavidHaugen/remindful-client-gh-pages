@@ -10,11 +10,13 @@ class LogIn extends Component {
   }
   static contextType = GoalsContext
 
-  state = { error: null }
+  state = { 
+    error: null}
 
   handleSubmitJwtAuth = ev => {
     ev.preventDefault()
     this.setState({ error: null })
+    this.context.loadingTrue();
     const { email_address, password } = ev.target
  
     AuthApiService.postLogin({
@@ -27,15 +29,24 @@ class LogIn extends Component {
         TokenService.saveAuthToken(res.authToken)
         this.props.history.push('/my-goals')
         this.context.getGoals()
+        this.context.loadingFalse()
       })
       .catch(res => {
-        this.setState({ error: res.error })
+        this.setState({ error: res.error})
+        this.context.loadingFalse()
       })
   }
 
   render(){
     const { error } = this.state
 
+    if(this.context.loading){
+      return(
+        <div className="main">
+          <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+      )
+    } else{
     return(
       <div className="main">
         <div className="wrapper">
@@ -62,6 +73,7 @@ class LogIn extends Component {
       </div>
     )
   }
+}
 }
 
 export default LogIn

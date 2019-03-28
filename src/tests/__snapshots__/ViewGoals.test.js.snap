@@ -59,6 +59,9 @@ exports[`<ViewGoals /> renders the UI as expected when there are goals present 1
   <div
     className="wrapper"
   >
+    <div
+      role="alert"
+    />
     <ul
       className="listContainer"
     >

@@ -20,7 +20,7 @@ exports[`<Header /> renders the UI as expected 1`] = `
   </a>
   <a
     className="nav-link"
-    href="/"
+    href="/about"
     onClick={[Function]}
   >
      About

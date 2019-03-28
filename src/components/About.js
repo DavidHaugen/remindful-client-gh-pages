@@ -35,7 +35,7 @@ class About extends Component {
   render(){
     let trySection;
     if(!TokenService.hasAuthToken()){
-      trySection = <section className="tryRemindful"><p>Want to try Remindful before you sign up? Click the button below to get started. Please note: this will log you in under a public test account. All changes made to the account will be visible to anyone using the test account and will be reset daily.</p><button className='textButton' onClick={(e) => {this.handleClickTry(e)}}>Try Remindful!</button></section>
+      trySection = <section className="tryRemindful"><p>Want to try Remindful before you sign up? Click the button below to get started. Please note: this will log you in under a public test account. All changes made will be visible to anyone using the test account.</p><button className='textButton' onClick={(e) => {this.handleClickTry(e)}}>Try Remindful!</button></section>
     }
 
     if(this.context.loading){
@@ -52,6 +52,9 @@ class About extends Component {
           <header role="banner" className="banner">
             <h1 className="aboutHeader">Remindful</h1>
           </header>
+          <div role='alert'>
+              {this.context.error && <p className='red'>{this.context.error}</p>}
+          </div>
           <section className='description'>
             <p>Remindful is meant to give you a space to track your long-term goals. It's here to provide you with a gentle nudge to stay on course to write that novel, learn a new instrument, or pick up the phone to call that old friend every now and then. On the first of every month you'll receive an email reminding you to check in with your goals and log your progress. </p>
           </section>

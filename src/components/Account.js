@@ -11,7 +11,11 @@ class Account extends Component {
   }
 
   deleteAccount = () => {
+    this.context.clearError();
     remindfulApiService.deleteUser()
+    .catch(res => {
+      this.context.setError(res)
+    })
     .then(TokenService.clearAuthToken())
       .then(this.context.deleteUser())
       .then(this.props.history.push('/account-deleted'))

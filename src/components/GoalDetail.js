@@ -14,23 +14,28 @@ class GoalDetail extends Component {
 
   submitReflection = e => {
     e.preventDefault();
+    this.context.clearError();
     const {reflectionsInput} = e.target
     const goalId = this.props.match.params.goalId
     remindfulApiService.postNewReflection(goalId, reflectionsInput.value)
     .then(reflection => this.setState({reflections: [...this.state.reflections, reflection]}))
+    .catch(res => {this.context.setError(res)})
     .then(document.getElementById('reflectionsForm').reset())
   }
 
   deleteGoal = goal => {
-    remindfulApiService.deleteGoal(goal);
+    remindfulApiService.deleteGoal(goal)
+      .catch(res => {this.context.setError(res)});
     this.context.deleteGoal(goal);
     this.props.history.push('/my-goals');
   }
 
   deleteReflection = (e) => {
     e.preventDefault();
+    this.context.clearError();
     const id = e.target.id;
     remindfulApiService.deleteReflection(id)
+      .catch(res => {this.context.setError(res)})
     console.log(id)
     const targetReflection = this.state.reflections.filter((reflection) => reflection.id === Number(id));
     const newReflections = this.state.reflections;
@@ -41,8 +46,10 @@ class GoalDetail extends Component {
   markGoalComplete = id => {
     const targetGoal = this.context.goals.filter((goal) => goal.id === Number(id));
     const updatedGoal = {...targetGoal[0]}
+    this.context.clearError()
     updatedGoal.complete = !updatedGoal.complete
     remindfulApiService.markGoalComplete(updatedGoal)
+      .catch(res => {this.context.setError(res)})
     this.context.markGoalComplete(id)
   }
 
@@ -50,6 +57,7 @@ class GoalDetail extends Component {
     this.context.loadingTrue();
     remindfulApiService.getReflections(Number(this.props.match.params.goalId))
       .then(reflections => this.setState({reflections}))
+      .catch(res => {this.context.setError(res)})
       .then(this.context.loadingFalse());
   }
   
@@ -76,6 +84,9 @@ class GoalDetail extends Component {
     return (
       <div className="main">
         <div className="wrapper">
+            <div role='alert'>
+              {this.context.error && <p className='red'>{this.context.error}</p>}
+            </div>
           <div className="goalTitle">
             <h1 className={
               (goal) ? 
@@ -96,7 +107,7 @@ class GoalDetail extends Component {
             {reflections.length > 0 ? reflections : <div className="empty"><p>No reflections yet.</p>Get started by adding a reflection below!</div>}
           </ul>
             <div className="formContainer">
-              <form onSubmit={(e)=>this.submitReflection(e)} className="inputForm">
+              <form onSubmit={(e)=>this.submitReflection(e)} className="inputForm" id="reflectionsForm">
                 <div role='alert'>
                   {error && <p className='red'>{error}</p>}
                 </div>

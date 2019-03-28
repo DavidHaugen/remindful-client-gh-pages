@@ -23,7 +23,7 @@ exports[`<App /> renders the UI as expected 1`] = `
     </a>
     <a
       className="nav-link"
-      href="/"
+      href="/about"
       onClick={[Function]}
     >
        About
@@ -45,6 +45,9 @@ exports[`<App /> renders the UI as expected 1`] = `
           Remindful
         </h1>
       </header>
+      <div
+        role="alert"
+      />
       <section
         className="description"
       >
@@ -63,7 +66,7 @@ exports[`<App /> renders the UI as expected 1`] = `
         className="tryRemindful"
       >
         <p>
-          Want to try Remindful before you sign up? Click the button below to get started. Please note: this will log you in under a public test account. All changes made to the account will be visible to anyone using the test account and will be reset daily.
+          Want to try Remindful before you sign up? Click the button below to get started. Please note: this will log you in under a public test account. All changes made will be visible to anyone using the test account.
         </p>
         <button
           className="textButton"

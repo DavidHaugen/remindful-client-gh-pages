@@ -8,10 +8,12 @@ export default class AddGoal extends Component {
 
   submitNewGoal = (e) => {
     e.preventDefault()
+    this.context.loadingTrue();
     const name = e.target.name.value;
     remindfulApiService.postNewGoal(name)
       .then((goal) => this.context.addGoal(goal))
-    this.props.history.push('/my-goals')
+      .then(this.props.history.push('/my-goals'))
+      .then(this.context.loadingFalse())
   }
 
   render(){

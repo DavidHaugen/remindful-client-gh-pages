@@ -15,10 +15,14 @@ import remindfulApiService from '../services/remindful-api-service'
 import Account from './Account';
 import AccountDeleted from './AccountDeleted';
 import TokenService from '../services/token-service'
+import NotFound from './NotFound'
 
 
 class App extends Component {
   state = {
+
+      error: null,
+
       goals: [],
 
       loading: false,
@@ -38,11 +42,13 @@ class App extends Component {
       
       getGoals: () => {
         this.state.loadingTrue()
+        this.state.clearError();
         remindfulApiService.getAllGoals()
         .then(goals => {
           this.setState({goals})
           this.state.loadingFalse()
         })
+        .catch(res => {this.state.setError(res); this.state.loadingFalse()})
       },
 
       markGoalComplete: (id) => {
@@ -72,6 +78,14 @@ class App extends Component {
 
       loadingFalse: () => {
         this.setState({loading: false})
+      },
+
+      clearError: () => {
+        this.setState({error: null})
+      },
+
+      setError: (err) => {
+        this.setState({error: err})
       }
     }
 
@@ -86,14 +100,13 @@ class App extends Component {
       <div className="App">
         <GoalsContext.Provider value={this.state}>
           <Route path ='/' component = {Header} />
-          <Route exact path = '/' component = {About} />
           <Switch>
             <PublicOnlyRoute
-              path={'/log-in'}
+              exact path={'/log-in'}
               component={SignIn}
             />
             <PublicOnlyRoute
-              path={'/sign-up'}
+              exact path={'/sign-up'}
               component={SignUp}
             />
             <PrivateRoute
@@ -105,12 +118,23 @@ class App extends Component {
               component={GoalDetail}
             />
             <PrivateRoute 
-              path={'/add-goal'} 
+              exact path={'/add-goal'} 
               component = {AddGoal}
             />
             <PrivateRoute
               exact path={'/account'} 
               component={Account}
+            />
+            <Route 
+              exact path = {'/about'} 
+              component = {About} 
+            />
+            <Route 
+            exact path = {'/'}
+            component = {About}
+            />
+            <Route
+              component={NotFound}
             />
           </Switch>
           <Route path ='/account-deleted' component={AccountDeleted} />
