@@ -48,7 +48,7 @@ class App extends Component {
           this.setState({goals})
           this.state.loadingFalse()
         })
-        .catch(res => {this.state.setError(res); this.state.loadingFalse()})
+        .catch(res => {this.setState({error: res.error}); this.state.loadingFalse()})
       },
 
       markGoalComplete: (id) => {
@@ -85,7 +85,7 @@ class App extends Component {
       },
 
       setError: (err) => {
-        this.setState({error: err})
+        this.setState({error: err.message})
       }
     }
 
@@ -133,11 +133,14 @@ class App extends Component {
             exact path = {'/'}
             component = {About}
             />
+            <Route 
+            exact path ='/account-deleted' 
+            component={AccountDeleted} 
+            />
             <Route
               component={NotFound}
             />
           </Switch>
-          <Route path ='/account-deleted' component={AccountDeleted} />
         </GoalsContext.Provider>
       </div>
     );

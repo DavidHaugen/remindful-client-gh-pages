@@ -10,7 +10,6 @@ exports[`<AccountDeleted /> renders the UI as expected 1`] = `
     <h4>
       Your account has been successfully deleted
     </h4>
-    \\
   </div>
 </div>
 `;

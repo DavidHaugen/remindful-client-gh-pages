@@ -46,13 +46,17 @@ button{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 15px 5px 15px 5px;
   border-radius: 4px;
 }
 
 .reflection:nth-child(even){
   background-color: #dce3e9;
+}
+
+.reflection:nth-child(odd){
+  background-color: rgb(199, 218, 198)
 }
 
 .reflectionDate{
@@ -87,7 +91,7 @@ button{
   align-items: center;
 }
 
-.trashContainer{
+.checkContainer{
   background-color: #dce3e9;
   border-radius: 3px 0 0 3px;
 }

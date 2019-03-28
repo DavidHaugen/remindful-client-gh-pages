@@ -24,7 +24,7 @@ class AccountDeleted extends Component {
     return (
       <div className="main">
         <div className="wrapper">
-          <h4>{'Your account has been successfully deleted'}</h4>\
+          <h4>{'Your account has been successfully deleted'}</h4>
         </div>
       </div>
     )

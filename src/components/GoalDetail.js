@@ -36,7 +36,6 @@ class GoalDetail extends Component {
     const id = e.target.id;
     remindfulApiService.deleteReflection(id)
       .catch(res => {this.context.setError(res)})
-    console.log(id)
     const targetReflection = this.state.reflections.filter((reflection) => reflection.id === Number(id));
     const newReflections = this.state.reflections;
     newReflections.splice(this.state.reflections.indexOf(targetReflection[0]), 1);
@@ -69,7 +68,7 @@ class GoalDetail extends Component {
       const date = new Date(reflection.date_created)
       return <li key={key} className="reflection">
           <span className='reflectionDate'>{(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()}</span><span className='reflectionContent'>{reflection.content}</span>
-          <i className="fas fa-trash" onClick={(e) => this.deleteReflection(e)}></i>
+          <i className="fas fa-trash" id={reflection.id} onClick={(e) => this.deleteReflection(e)}></i>
         </li>
     })
     let [goal] = this.context.goals.filter((goal) => (goal.id === Number(this.props.match.params.goalId)))
@@ -95,29 +94,29 @@ class GoalDetail extends Component {
               (goal) ? 
               goal.name : null}</h1>
               <div className="goalButtons">
-                <div className="trashContainer" onClick={() => this.deleteGoal(this.props.match.params.goalId)}>
-                  <i className="fas fa-trash"></i>
-                </div>
                 <div className="checkContainer" onClick={() => this.markGoalComplete(this.props.match.params.goalId)}>
                   <i className="fas fa-check-circle" ></i>
                 </div>
+                <div className="trashContainer" onClick={() => this.deleteGoal(this.props.match.params.goalId)}>
+                  <i className="fas fa-trash"></i>
+                </div>
               </div>
           </div>
+          <div className="formContainer">
+            <form onSubmit={(e)=>this.submitReflection(e)} className="inputForm" id="reflectionsForm">
+              <div role='alert'>
+                {error && <p className='red'>{error}</p>}
+              </div>
+              <div className="formField">
+                <label htmlFor="reflectionsInput" id="addReflectionLabel" className="inputLabel">Reflection</label>
+                <input id='reflectionsInput' name='reflectionsInput' className="inputField" required></input>
+                <button type='submit' ><i className="fas fa-plus-circle" id="reflectionButton" type="button"></i></button>
+              </div>
+            </form>
+          </div>
           <ul className="listContainer">
-            {reflections.length > 0 ? reflections : <div className="empty"><p>No reflections yet.</p>Get started by adding a reflection below!</div>}
+            {reflections.length > 0 ? reflections : <div className="empty"><p>No reflections yet.</p>Get started by adding a reflection above!</div>}
           </ul>
-            <div className="formContainer">
-              <form onSubmit={(e)=>this.submitReflection(e)} className="inputForm" id="reflectionsForm">
-                <div role='alert'>
-                  {error && <p className='red'>{error}</p>}
-                </div>
-                <div className="formField">
-                  <label htmlFor="reflectionsInput" id="addReflectionLabel" className="inputLabel">Reflection</label>
-                  <input id='reflectionsInput' name='reflectionsInput' className="inputField" required></input>
-                  <button type='submit' ><i className="fas fa-plus-circle" id="reflectionButton" type="button"></i></button>
-                </div>
-              </form>
-            </div>
           </div>
       </div>
     )}

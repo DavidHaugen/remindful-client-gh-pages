@@ -22,14 +22,6 @@ exports[`<GoalDetail /> renders the UI as expected 1`] = `
         className="goalButtons"
       >
         <div
-          className="trashContainer"
-          onClick={[Function]}
-        >
-          <i
-            className="fas fa-trash"
-          />
-        </div>
-        <div
           className="checkContainer"
           onClick={[Function]}
         >
@@ -37,20 +29,16 @@ exports[`<GoalDetail /> renders the UI as expected 1`] = `
             className="fas fa-check-circle"
           />
         </div>
+        <div
+          className="trashContainer"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-trash"
+          />
+        </div>
       </div>
     </div>
-    <ul
-      className="listContainer"
-    >
-      <div
-        className="empty"
-      >
-        <p>
-          No reflections yet.
-        </p>
-        Get started by adding a reflection below!
-      </div>
-    </ul>
     <div
       className="formContainer"
     >
@@ -90,6 +78,18 @@ exports[`<GoalDetail /> renders the UI as expected 1`] = `
         </div>
       </form>
     </div>
+    <ul
+      className="listContainer"
+    >
+      <div
+        className="empty"
+      >
+        <p>
+          No reflections yet.
+        </p>
+        Get started by adding a reflection above!
+      </div>
+    </ul>
   </div>
 </div>
 `;
