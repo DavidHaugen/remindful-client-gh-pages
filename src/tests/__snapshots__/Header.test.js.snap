@@ -6,6 +6,17 @@ exports[`<Header /> renders the UI as expected 1`] = `
 >
   <a
     className="nav-link"
+    href="/about"
+    onClick={[Function]}
+  >
+    <img
+      alt="Remindful logo"
+      className="logo"
+      src="remindfulIcon.png"
+    />
+  </a>
+  <a
+    className="nav-link"
     href="/log-in"
     onClick={[Function]}
   >
