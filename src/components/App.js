@@ -29,6 +29,8 @@ class App extends Component {
 
       deletedUser: false,
 
+      testUser: false,
+
       deleteGoal: (id) => {
         const targetGoal = this.state.goals.filter((goal) => goal.id === Number(id));
         const newGoals = this.state.goals;
@@ -86,6 +88,14 @@ class App extends Component {
 
       setError: (err) => {
         this.setState({error: err.error})
+      },
+
+      testUserTrue: () => {
+        this.setState({testUser: true})
+      },
+
+      testUserFalse: () => {
+        this.setState({testUser: false})
       }
     }
 

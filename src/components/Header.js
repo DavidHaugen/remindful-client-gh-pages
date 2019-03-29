@@ -3,18 +3,21 @@ import '../styles/Nav.css'
 import { Link } from 'react-router-dom'
 import TokenService from '../services/token-service'
 import GoalsContext from '../context/GoalsContext'
+import logo from '../images/remindfulIcon.png'
 
 export default class Header extends Component {
   static contextType = GoalsContext
 
   handleSignOutClick = () => {
-    TokenService.clearAuthToken()
+    TokenService.clearAuthToken();
+    this.context.testUserFalse();
     this.context.clearGoals()
   }
 
   render() {if(TokenService.hasAuthToken()){
     return(
     <nav role="navigation">
+      <Link className='nav-link' to='/about' ><img src={logo} alt="Remindful logo" className="logo"></img></Link>
       <Link className='nav-link' to='/my-goals' onClick={() => this.context.getGoals()}> View goals</Link> 
       <Link className='nav-link' to='/about' >About</Link>
       <Link className='nav-link' to='/account' >Account</Link>
@@ -22,6 +25,7 @@ export default class Header extends Component {
     </nav>
     )}else return (
       <nav role="navigation">
+        <Link className='nav-link' to='/about' ><img src={logo} alt="Remindful logo" className="logo"></img></Link>
         <Link className='nav-link' to='/log-in' > Log in</Link> 
         <Link className='nav-link' to='/sign-up'> Sign up</Link> 
         <Link className='nav-link' to='/about' > About</Link>

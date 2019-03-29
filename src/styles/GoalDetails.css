@@ -52,11 +52,11 @@ button{
 }
 
 .reflection:nth-child(even){
-  background-color: #dce3e9;
+  background-color: #d3dee7;
 }
 
 .reflection:nth-child(odd){
-  background-color: rgb(199, 218, 198)
+  background-color: #C7BBD9
 }
 
 .reflectionDate{

@@ -22,9 +22,7 @@ class Account extends Component {
   }
   render(){
 
-    const token=TokenService.getAuthToken();
-
-    if(token==='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1NTM4MTA5NjIsInN1YiI6InJlbWluZGZ1bFRlc3RAZ21haWwuY29tIn0.gF_NpZCP4jfoJIKPuPXFfvuq0cstHDgJLuvv2_aacik'){
+    if(this.context.testUser){
       return(
         <div className="main">
           <div className="wrapper">

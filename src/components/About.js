@@ -27,11 +27,11 @@ class About extends Component {
 
   handleClickTry = (e) => {
     e.preventDefault();
-    this.handleSubmitJwtAuth()
+    this.handleSubmitJwtAuth();
+    this.context.testUserTrue();
   }
 
   render(){
-
     let trySection;
     if(!TokenService.hasAuthToken()){
       trySection = <section className="tryRemindful"><p>Want to try Remindful before you sign up? Click the button below to get started. Please note: this will log you in under a public test account. All changes made will be visible to anyone using the test account.</p><button className='textButton' onClick={(e) => {this.handleClickTry(e)}}>Try Remindful!</button></section>

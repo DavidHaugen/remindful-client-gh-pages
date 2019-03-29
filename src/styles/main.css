@@ -31,13 +31,13 @@ div.main .wrapper {
 }
 
 .inputLabel{
-  border: 1px solid #dce3e9;
+  border: 1px solid #d3dee7;
   margin: 0;
   padding: 3px;
-  border: 2px solid #dce3e9;
-  border-right: 1px solid #dce3e9;
+  border: 2px solid #d3dee7;
+  border-right: 1px solid #d3dee7;
   border-radius: 2px 0 0 2px;
-  background-color: #dce3e9;
+  background-color: #d3dee7;
   width: 40%
 }
 
@@ -45,8 +45,8 @@ div.main .wrapper {
   border: none;
   margin: 0;
   padding: 3px;
-  border: 2px solid #dce3e9;
-  border-left: 1px solid #dce3e9;
+  border: 2px solid #d3dee7;
+  border-left: 1px solid #d3dee7;
   border-radius: 0 2px 2px 0;
   width: 60%;
 }
