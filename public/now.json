@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "name": "remindful-app",
-  "alias": "remindful-app",
+  "name": "remindful",
+  "alias": "remindful",
   "routes": [
       {
         "src": "^/static/(.*)",
